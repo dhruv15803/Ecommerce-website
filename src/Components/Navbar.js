@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 
 export const Navbar = () => {
@@ -9,10 +10,10 @@ export const Navbar = () => {
             Shopify
         </div>
         <ul>
-            <div><li><a href="/">Men's clothing</a></li></div>
-            <div><li><a href="/womens">Women's clothing</a></li></div>
-            <div><li><a href="/jewelery">Jewelery</a></li></div>
-            <div><li><a href="/electronics">Electronics</a></li></div>
+            <div><li><Link to="/">Men's clothing</Link></li></div>
+            <div><li><Link to="/womens">Women's clothing</Link></li></div>
+            <div><li><Link to="/jewelery">Jewelery</Link></li></div>
+            <div><li><Link to="/electronics">Electronics</Link></li></div>
         </ul>
         <div id="navRight">
             <button className="navBtn" id="CartBtn" onClick={()=>window.location='/Cart'}>Cart</button>
