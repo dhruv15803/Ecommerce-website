@@ -1,24 +1,61 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import { Hero } from './Components/Hero';
+import { Navbar } from './Components/Navbar';
+import { Products } from './Components/Products';
+import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import { Cart } from './Components/Cart';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
+
+  let cartProducts = JSON.parse(localStorage.getItem('cartProducts'));
+  if(cartProducts===null){
+    cartProducts=[];
+  }
+  const [products,setProducts] = useState([]);
+  const [cart,setCart] = useState(cartProducts);
+
+
+  useEffect(()=>{
+    fetch('https://fakestoreapi.com/products').then((res)=>res.json()).then((data)=>setProducts(data));
+  },[]);
+  
+  const addToCart = (index)=>{
+    for(let i=0;i<cart.length;i++){
+      if(cart[i].id===products[index].id){
+        toast.error('Already in cart');
+        return;
+      }
+    }
+    setCart(prevCart=>[...prevCart,{
+      'id':products[index].id,
+      'title':products[index].title,
+      'price':products[index].price,
+      'qty':1,
+    }]);
+    toast.success('Added to cart');
+  }
+
+  useEffect(()=>{
+    localStorage.setItem('cartProducts',JSON.stringify(cart));
+  },[cart]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <BrowserRouter>
+    <Navbar/>
+    <Routes>
+      <Route path='/' element={[    <Hero/>,
+  <Products products={products} category="men's clothing" addToCart={addToCart}/>]}/>
+  <Route path='/womens' element={<Products products={products} category="women's clothing" addToCart={addToCart}/>}/>
+  <Route path='/jewelery' element={<Products products={products} category="jewelery" addToCart={addToCart}/>}/>
+  <Route path='/electronics' element={<Products products={products} category="electronics" addToCart={addToCart}/>}/>
+  <Route path='/Cart' element={<Cart/>}/>
+    </Routes>
+    </BrowserRouter>
+    </>
   );
 }
 
