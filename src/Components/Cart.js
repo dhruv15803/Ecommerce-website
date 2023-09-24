@@ -9,12 +9,14 @@ export const Cart = () => {
 
     const clearCart = ()=>{
         setCartItems([]);
+        window.location.reload();
     }
 
     const deleteCartItem = (index)=>{
         const temp = [...cartItems];
         temp.splice(index,1);
         setCartItems(temp);
+        window.location.reload();
     }
 
     const increment = (index)=>{

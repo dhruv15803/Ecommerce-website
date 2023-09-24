@@ -45,6 +45,7 @@
 /* Navbar css start */
 
 #navbar{
+  position:relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -58,13 +59,13 @@
   font-family: 'Roboto', sans-serif;
 }
 
-#navbar ul{
+.nav-menu{
   display: flex;
   flex-direction: row;
   gap:35px;
 }
 
-#navbar ul div{
+.nav-menu div{
   border-radius: 25px;
   width:200px;
   display: flex;
@@ -75,15 +76,15 @@
   transition: transform 0.3s;
 }
 
-#navbar ul div:hover{
+.nav-menu div:hover{
   transform: scale(1.2);
 }
 
-#navbar ul li{
+.nav-menu li{
   list-style: none;
 }
 
-#navbar ul li a{
+.nav-menu li a{
   text-decoration: none;
   color:black;
   font-family: 'Roboto', sans-serif;
@@ -91,7 +92,7 @@
   transition:0.3s;
 }
 
-#navbar ul li a:hover{
+.nav-menu li a:hover{
   color:#793FDF;
 }
 
@@ -115,6 +116,14 @@
 .navBtn:hover{
   background-color: #5e23c3;
   border-radius: 15px;
+}
+
+#navCart{
+  display: none;
+}
+
+#hamburger{
+  display: none;
 }
 
 /* Navbar css end */
@@ -304,8 +313,8 @@
     align-items: center;
     justify-content: center;
   }
-  #navbar ul{
-    display: flex;
+  .nav-menu{
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -321,6 +330,17 @@
     width:25%;
   }
 
+  #navRight{
+    display: none;
+  }
+
+  #navCart{
+    display: block;
+    position: absolute;
+    right:100px;
+    top:15px;
+  }
+
   .products-item-container img{
     width:80%;
     height:40%;
@@ -332,6 +352,16 @@
     justify-content: center;
   }
 
+  #hamburger{
+    display: block;
+    position: absolute;
+    right:50px;
+    top:15px;
+  }
+
+  .active{
+    display: flex;
+  }
 
 }
 

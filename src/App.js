@@ -18,6 +18,7 @@ function App() {
   const [cart,setCart] = useState(cartProducts);
 
 
+
   useEffect(()=>{
     fetch('https://fakestoreapi.com/products').then((res)=>res.json()).then((data)=>setProducts(data));
   },[]);
@@ -48,10 +49,10 @@ function App() {
     <Navbar/>
     <Routes>
       <Route path='/' element={[    <Hero/>,
-  <Products products={products} category="men's clothing" addToCart={addToCart}/>]}/>
-  <Route path='/womens' element={<Products products={products} category="women's clothing" addToCart={addToCart}/>}/>
-  <Route path='/jewelery' element={<Products products={products} category="jewelery" addToCart={addToCart}/>}/>
-  <Route path='/electronics' element={<Products products={products} category="electronics" addToCart={addToCart}/>}/>
+  <Products products={products} category="men's clothing" addToCart={addToCart} cart={cart} setCart={setCart}/>]}/>
+  <Route path='/womens' element={<Products products={products} category="women's clothing" addToCart={addToCart} cart={cart} setCart={setCart}/>}/>
+  <Route path='/jewelery' element={<Products products={products} category="jewelery" addToCart={addToCart} cart={cart} setCart={setCart}/>}/>
+  <Route path='/electronics' element={<Products products={products} category="electronics" addToCart={addToCart} cart={cart} setCart={setCart}/>}/>
   <Route path='/Cart' element={<Cart/>}/>
     </Routes>
     </BrowserRouter>

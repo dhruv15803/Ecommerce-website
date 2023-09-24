@@ -1,14 +1,17 @@
-import React from 'react'
+import React  from 'react'
 import { ToastContainer } from 'react-toastify';
 
 export const Products = (props) => {
+
+  console.log(props.cart);
+
   return (
     <>
     <div className="products-outer-container">
         <div className="products-child-container">
             {props.products.map((item,index)=>{
                 if(item.category===props.category){
-                return <div className="products-item-container">
+                return <div key={item.id} className="products-item-container">
                 <img src={item.image} alt="" />
                 <h3>{item.title}</h3>
                 <p>{`$ ${item.price}`}</p>
@@ -19,7 +22,7 @@ export const Products = (props) => {
             })}
         </div>
     </div>
-    <ToastContainer autoClose={1500} theme='colored'/>
+    <ToastContainer position='bottom-right' autoClose={1500} theme='colored'/>
     </>
   )
 }
